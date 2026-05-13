@@ -210,9 +210,9 @@ elif st.session_state.page == "edu":
     <div class="card">
     CEFOREP - Échographie obstétricale (2024)<br>
     PNLP - Paludologie (2023)<br>
-    ESUP - Licence soins obstétricaux<br>
+    ESUP - Licence soins obstétricaux(2015-2014)<br>
     UGB - Langue française<br>
-    Baccalauréat scientifique
+    Baccalauréat     (2012-2011)
     </div>
     """, unsafe_allow_html=True)
 

@@ -278,124 +278,250 @@ html, body, [class*="css"] {
 }
 
 .experience-intro {
+    position: relative;
     display: grid;
-    grid-template-columns: 1.35fr .65fr;
-    gap: 18px;
-    margin: 20px 0 28px;
+    grid-template-columns: 1.5fr .5fr;
+    gap: 20px;
+    margin: 22px 0 34px;
+}
+
+.experience-highlight,
+.experience-note {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    border: 1px solid rgba(8,127,115,.10);
+    box-shadow: 0 18px 55px rgba(16,42,45,.065);
+    backdrop-filter: blur(18px);
 }
 
 .experience-highlight {
-    position: relative;
-    overflow: hidden;
-    padding: 25px 28px;
-    border-radius: 26px;
-    background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,249,246,.86));
-    border: 1px solid rgba(8,127,115,.10);
-    box-shadow: 0 15px 42px rgba(16,42,45,.055);
+    padding: 30px 34px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(8,127,115,.14), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,.96), rgba(235,248,244,.86));
+    animation: expIntro 1s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.experience-highlight:before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    right: -75px;
+    bottom: -105px;
+    border: 1px solid rgba(8,127,115,.13);
+    border-radius: 50%;
+    animation: expOrbit 8s linear infinite;
 }
 
 .experience-highlight:after {
     content: "✦";
     position: absolute;
-    right: 24px;
-    top: 17px;
-    color: rgba(8,127,115,.14);
-    font-size: 3.4rem;
+    right: 30px;
+    top: 18px;
+    color: rgba(8,127,115,.13);
+    font-size: 4.2rem;
     font-family: Georgia, serif;
-}
-
-.experience-highlight strong {
-    color: var(--teal-dark);
+    animation: expSpark 3.5s ease-in-out infinite;
 }
 
 .experience-note {
-    padding: 25px 28px;
-    border-radius: 26px;
-    background: rgba(255,255,255,.70);
-    border: 1px solid var(--line);
-    box-shadow: 0 12px 35px rgba(16,42,45,.045);
+    padding: 29px;
+    background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(247,243,232,.80));
+    animation: expIntro 1s .12s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.experience-note:after {
+    content: "";
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    right: -30px;
+    top: -30px;
+    border-radius: 50%;
+    background: rgba(199,155,82,.10);
+    filter: blur(2px);
+    animation: expFloat 5s ease-in-out infinite;
 }
 
 .experience-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-    margin-top: 18px;
+    gap: 22px;
+    perspective: 1200px;
 }
 
 .experience-card {
+    --accent: #087f73;
     position: relative;
     overflow: hidden;
-    border-radius: 28px;
-    background: rgba(255,255,255,.88);
-    border: 1px solid rgba(16,42,45,.08);
-    box-shadow: 0 13px 38px rgba(16,42,45,.055);
-    transition: transform .30s ease, box-shadow .30s ease, border-color .30s ease;
+    min-height: 330px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.91);
+    border: 1px solid rgba(16,42,45,.075);
+    box-shadow: 0 16px 48px rgba(16,42,45,.065);
+    transition:
+        transform .55s cubic-bezier(.2,.8,.2,1),
+        box-shadow .55s ease,
+        border-color .35s ease;
+    animation: expCardIn .85s cubic-bezier(.2,.8,.2,1) both;
+    transform-style: preserve-3d;
+}
+
+.experience-card:nth-child(1) { animation-delay: .08s; }
+.experience-card:nth-child(2) { animation-delay: .18s; --accent:#6f9d96; }
+.experience-card:nth-child(3) { animation-delay: .28s; --accent:#b08a4a; }
+.experience-card:nth-child(4) { animation-delay: .38s; --accent:#4f7c80; }
+
+.experience-card:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), rgba(255,255,255,0));
+    transform: scaleX(.35);
+    transform-origin: left;
+    transition: transform .55s ease;
+}
+
+.experience-card:after {
+    content: "";
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    right: -100px;
+    top: -100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(8,127,115,.13), transparent 68%);
+    opacity: .65;
+    transition: transform .7s ease, opacity .5s ease;
 }
 
 .experience-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 58px rgba(16,42,45,.105);
+    transform: translateY(-10px) rotateX(1deg) rotateY(-1deg);
+    box-shadow:
+        0 30px 75px rgba(16,42,45,.13),
+        0 0 0 1px rgba(8,127,115,.08);
     border-color: rgba(8,127,115,.18);
 }
 
+.experience-card:hover:before {
+    transform: scaleX(1);
+}
+
+.experience-card:hover:after {
+    transform: scale(1.55);
+    opacity: 1;
+}
+
 .experience-top {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 16px;
-    padding: 25px 26px 19px;
+    gap: 18px;
+    padding: 28px 29px 19px;
 }
 
 .experience-number {
-    width: 44px;
-    height: 44px;
-    flex: 0 0 44px;
+    position: relative;
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
     display: grid;
     place-items: center;
-    border-radius: 15px;
-    background: #eaf7f4;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #edf8f5, #dcefe9);
     color: var(--teal-dark);
     font-weight: 800;
-    font-size: .9rem;
+    font-size: .82rem;
+    box-shadow: inset 0 0 0 1px rgba(8,127,115,.07);
+    transition: transform .55s cubic-bezier(.2,.8,.2,1);
+}
+
+.experience-number:after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border: 1px solid rgba(8,127,115,.12);
+    border-radius: 22px;
+    animation: expRing 3.5s ease-in-out infinite;
+}
+
+.experience-card:hover .experience-number {
+    transform: rotate(8deg) scale(1.08);
 }
 
 .experience-period {
-    color: var(--teal);
+    color: var(--accent);
     font-weight: 800;
-    font-size: .77rem;
-    letter-spacing: .09em;
+    font-size: .74rem;
+    letter-spacing: .12em;
     text-transform: uppercase;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
 }
 
 .experience-title {
     font-family: "Playfair Display", serif;
-    font-size: 1.42rem;
-    line-height: 1.2;
+    font-size: 1.48rem;
+    line-height: 1.18;
     color: var(--ink);
     margin: 0;
+    transition: color .3s ease, transform .4s ease;
+}
+
+.experience-card:hover .experience-title {
+    color: var(--teal-dark);
+    transform: translateX(3px);
 }
 
 .experience-place {
-    color: #6a7f80;
-    font-size: .88rem;
-    margin-top: 7px;
+    color: #718485;
+    font-size: .87rem;
+    margin-top: 8px;
 }
 
 .experience-content {
-    padding: 0 26px 23px;
+    position: relative;
+    z-index: 2;
+    padding: 0 29px 21px;
 }
 
 .experience-content p {
     color: var(--ink-soft);
-    line-height: 1.75;
+    line-height: 1.78;
     margin: 0;
 }
 
+.experience-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    margin-top: 16px;
+    border-radius: 999px;
+    background: rgba(239,248,245,.92);
+    color: var(--teal-dark);
+    border: 1px solid rgba(8,127,115,.09);
+    font-size: .75rem;
+    font-weight: 700;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.experience-card:hover .experience-badge {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(8,127,115,.10);
+}
+
 .experience-details {
-    margin: 0 26px 24px;
-    border-top: 1px solid rgba(16,42,45,.08);
+    position: relative;
+    z-index: 3;
+    margin: 0 29px 26px;
+    border-top: 1px solid rgba(16,42,45,.075);
 }
 
 .experience-details summary {
@@ -404,8 +530,9 @@ html, body, [class*="css"] {
     padding: 15px 0 0;
     color: var(--teal-dark);
     font-weight: 700;
-    font-size: .88rem;
+    font-size: .86rem;
     user-select: none;
+    transition: color .25s ease;
 }
 
 .experience-details summary::-webkit-details-marker {
@@ -415,33 +542,62 @@ html, body, [class*="css"] {
 .experience-details summary:after {
     content: "＋";
     float: right;
-    font-size: 1.1rem;
-    transition: transform .25s ease;
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #edf8f5;
+    transition: transform .35s ease, background .35s ease;
 }
 
 .experience-details[open] summary:after {
     content: "−";
+    transform: rotate(180deg);
+    background: #dcefe9;
 }
 
 .experience-details ul {
-    margin: 12px 0 0;
+    margin: 13px 0 0;
     padding-left: 19px;
     color: var(--ink-soft);
-    line-height: 1.8;
+    line-height: 1.85;
+    animation: expReveal .45s ease both;
 }
 
-.experience-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 7px 11px;
-    margin-top: 15px;
-    border-radius: 999px;
-    background: #f1f8f6;
-    color: var(--teal-dark);
-    border: 1px solid rgba(8,127,115,.08);
-    font-size: .76rem;
-    font-weight: 700;
+@keyframes expIntro {
+    from { opacity:0; transform:translateY(22px) scale(.985); }
+    to { opacity:1; transform:translateY(0) scale(1); }
+}
+
+@keyframes expCardIn {
+    from { opacity:0; transform:translateY(30px) rotateX(5deg); }
+    to { opacity:1; transform:translateY(0) rotateX(0); }
+}
+
+@keyframes expReveal {
+    from { opacity:0; transform:translateY(-7px); }
+    to { opacity:1; transform:translateY(0); }
+}
+
+@keyframes expFloat {
+    0%,100% { transform:translate(0,0); }
+    50% { transform:translate(-14px,14px); }
+}
+
+@keyframes expSpark {
+    0%,100% { transform:rotate(0deg) scale(1); opacity:.55; }
+    50% { transform:rotate(12deg) scale(1.08); opacity:1; }
+}
+
+@keyframes expOrbit {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+}
+
+@keyframes expRing {
+    0%,100% { transform:scale(1); opacity:.35; }
+    50% { transform:scale(1.12); opacity:.8; }
 }
 
 @media (max-width: 800px) {
@@ -450,8 +606,20 @@ html, body, [class*="css"] {
         grid-template-columns: 1fr;
     }
 
+    .experience-highlight {
+        padding: 25px 23px;
+    }
+
+    .experience-note {
+        padding: 23px;
+    }
+
     .experience-top {
-        padding: 22px 21px 17px;
+        padding: 23px 21px 17px;
+    }
+
+    .experience-title {
+        font-size: 1.3rem;
     }
 
     .experience-content {
@@ -675,11 +843,116 @@ if st.session_state.page == "home":
 elif st.session_state.page == "exp":
 
     st.markdown("""
-    <div class="section-kicker">03 · Parcours</div>
-    <div class="section-title">Expériences professionnelles</div>
-    <div class="section-desc">
-        Un parcours progressif entre pratique clinique, échographie,
-        urgences obstétricales et coordination communautaire.
+    <div class="experience-list">
+
+        <article class="experience-card">
+            <div class="experience-top">
+                <div>
+                    <div class="experience-period">2025 · DJINAKY</div>
+                    <h3 class="experience-title">Sage-femme échographiste</h3>
+                    <div class="experience-place">SONUB · Urgences obstétricales</div>
+                </div>
+                <div class="experience-number">01</div>
+            </div>
+            <div class="experience-content">
+                <p>
+                    Activité centrée sur la pratique obstétricale, l'échographie
+                    et la prise en charge des situations nécessitant une attention
+                    particulière.
+                </p>
+                <span class="experience-badge">✦ Expérience récente</span>
+            </div>
+            <details class="experience-details">
+                <summary>Explorer l'expérience</summary>
+                <ul>
+                    <li>Échographie obstétricale</li>
+                    <li>SONUB</li>
+                    <li>Urgences obstétricales</li>
+                </ul>
+            </details>
+        </article>
+
+        <article class="experience-card">
+            <div class="experience-top">
+                <div>
+                    <div class="experience-period">2021 — 2024 · KAFOUNTINE</div>
+                    <h3 class="experience-title">Coordination santé communautaire</h3>
+                    <div class="experience-place">Coordination · suivi des indicateurs de santé</div>
+                </div>
+                <div class="experience-number">02</div>
+            </div>
+            <div class="experience-content">
+                <p>
+                    Participation à la coordination des activités de santé
+                    communautaire et au suivi des indicateurs utiles au pilotage
+                    des actions de santé.
+                </p>
+                <span class="experience-badge">◎ Santé communautaire</span>
+            </div>
+            <details class="experience-details">
+                <summary>Explorer l'expérience</summary>
+                <ul>
+                    <li>Coordination santé communautaire</li>
+                    <li>Suivi des indicateurs de santé</li>
+                    <li>Organisation et suivi des activités</li>
+                </ul>
+            </details>
+        </article>
+
+        <article class="experience-card">
+            <div class="experience-top">
+                <div>
+                    <div class="experience-period">2020 — 2021 · MEKHE</div>
+                    <h3 class="experience-title">Pratique obstétricale & prévention</h3>
+                    <div class="experience-place">Soins · prévention · santé maternelle</div>
+                </div>
+                <div class="experience-number">03</div>
+            </div>
+            <div class="experience-content">
+                <p>
+                    Expérience associant pratique obstétricale, prévention,
+                    vaccination et dépistage au contact direct des patientes
+                    et des communautés.
+                </p>
+                <span class="experience-badge">♡ Prévention & soins</span>
+            </div>
+            <details class="experience-details">
+                <summary>Explorer l'expérience</summary>
+                <ul>
+                    <li>Accouchements</li>
+                    <li>Vaccination</li>
+                    <li>Dépistage</li>
+                </ul>
+            </details>
+        </article>
+
+        <article class="experience-card">
+            <div class="experience-top">
+                <div>
+                    <div class="experience-period">2018 — 2019 · EPS / CLINIQUES</div>
+                    <h3 class="experience-title">Soins obstétricaux</h3>
+                    <div class="experience-place">Salle d'accouchement · maternité</div>
+                </div>
+                <div class="experience-number">04</div>
+            </div>
+            <div class="experience-content">
+                <p>
+                    Première expérience professionnelle structurante autour des
+                    soins obstétricaux, de la salle d'accouchement et de la
+                    surveillance des patientes en maternité.
+                </p>
+                <span class="experience-badge">✚ Soins obstétricaux</span>
+            </div>
+            <details class="experience-details">
+                <summary>Explorer l'expérience</summary>
+                <ul>
+                    <li>Salle d'accouchement</li>
+                    <li>Soins obstétricaux</li>
+                    <li>Surveillance en maternité</li>
+                </ul>
+            </details>
+        </article>
+
     </div>
     """, unsafe_allow_html=True)
 

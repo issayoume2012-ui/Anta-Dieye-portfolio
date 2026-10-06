@@ -277,64 +277,191 @@ html, body, [class*="css"] {
     margin-bottom: 15px;
 }
 
-.timeline {
-    position: relative;
-    margin: 18px 0 5px;
-    padding-left: 32px;
+.experience-intro {
+    display: grid;
+    grid-template-columns: 1.35fr .65fr;
+    gap: 18px;
+    margin: 20px 0 28px;
 }
 
-.timeline:before {
-    content: "";
+.experience-highlight {
+    position: relative;
+    overflow: hidden;
+    padding: 25px 28px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,249,246,.86));
+    border: 1px solid rgba(8,127,115,.10);
+    box-shadow: 0 15px 42px rgba(16,42,45,.055);
+}
+
+.experience-highlight:after {
+    content: "✦";
     position: absolute;
-    left: 8px;
-    top: 8px;
-    bottom: 8px;
-    width: 2px;
-    background: linear-gradient(var(--teal), rgba(8,127,115,.08));
+    right: 24px;
+    top: 17px;
+    color: rgba(8,127,115,.14);
+    font-size: 3.4rem;
+    font-family: Georgia, serif;
 }
 
-.timeline-item {
-    position: relative;
-    margin-bottom: 18px;
-    padding: 24px 26px;
-    border-radius: 22px;
-    background: rgba(255,255,255,.88);
+.experience-highlight strong {
+    color: var(--teal-dark);
+}
+
+.experience-note {
+    padding: 25px 28px;
+    border-radius: 26px;
+    background: rgba(255,255,255,.70);
     border: 1px solid var(--line);
-    box-shadow: 0 13px 35px rgba(16,42,45,.06);
-    transition: all .3s ease;
+    box-shadow: 0 12px 35px rgba(16,42,45,.045);
 }
 
-.timeline-item:hover {
-    transform: translateX(7px);
-    box-shadow: 0 22px 55px rgba(16,42,45,.11);
+.experience-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 18px;
 }
 
-.timeline-item:before {
-    content: "";
-    position: absolute;
-    left: -31px;
-    top: 28px;
-    width: 14px;
-    height: 14px;
-    background: var(--teal);
-    border: 4px solid #eaf7f4;
-    border-radius: 50%;
-    animation: pulse 3s infinite;
+.experience-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    background: rgba(255,255,255,.88);
+    border: 1px solid rgba(16,42,45,.08);
+    box-shadow: 0 13px 38px rgba(16,42,45,.055);
+    transition: transform .30s ease, box-shadow .30s ease, border-color .30s ease;
 }
 
-.timeline-year {
-    color: var(--gold);
+.experience-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 58px rgba(16,42,45,.105);
+    border-color: rgba(8,127,115,.18);
+}
+
+.experience-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 25px 26px 19px;
+}
+
+.experience-number {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    background: #eaf7f4;
+    color: var(--teal-dark);
     font-weight: 800;
-    font-size: .84rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
+    font-size: .9rem;
 }
 
-.timeline-title {
+.experience-period {
+    color: var(--teal);
+    font-weight: 800;
+    font-size: .77rem;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+}
+
+.experience-title {
     font-family: "Playfair Display", serif;
-    font-size: 1.35rem;
-    margin: 5px 0;
+    font-size: 1.42rem;
+    line-height: 1.2;
     color: var(--ink);
+    margin: 0;
+}
+
+.experience-place {
+    color: #6a7f80;
+    font-size: .88rem;
+    margin-top: 7px;
+}
+
+.experience-content {
+    padding: 0 26px 23px;
+}
+
+.experience-content p {
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin: 0;
+}
+
+.experience-details {
+    margin: 0 26px 24px;
+    border-top: 1px solid rgba(16,42,45,.08);
+}
+
+.experience-details summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 15px 0 0;
+    color: var(--teal-dark);
+    font-weight: 700;
+    font-size: .88rem;
+    user-select: none;
+}
+
+.experience-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.experience-details summary:after {
+    content: "＋";
+    float: right;
+    font-size: 1.1rem;
+    transition: transform .25s ease;
+}
+
+.experience-details[open] summary:after {
+    content: "−";
+}
+
+.experience-details ul {
+    margin: 12px 0 0;
+    padding-left: 19px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+}
+
+.experience-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 11px;
+    margin-top: 15px;
+    border-radius: 999px;
+    background: #f1f8f6;
+    color: var(--teal-dark);
+    border: 1px solid rgba(8,127,115,.08);
+    font-size: .76rem;
+    font-weight: 700;
+}
+
+@media (max-width: 800px) {
+    .experience-intro,
+    .experience-list {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-top {
+        padding: 22px 21px 17px;
+    }
+
+    .experience-content {
+        padding: 0 21px 20px;
+    }
+
+    .experience-details {
+        margin-left: 21px;
+        margin-right: 21px;
+    }
 }
 
 .skill-card {
@@ -557,39 +684,135 @@ elif st.session_state.page == "exp":
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div class="timeline">
-
-        <div class="timeline-item">
-            <div class="timeline-year">2025 · DJINAKY</div>
-            <div class="timeline-title">Sage-femme échographiste</div>
-            <div style="color:#496467;line-height:1.7;">
-                SONUB · urgences obstétricales
+    <div class="experience-intro">
+        <div class="experience-highlight">
+            <div class="section-kicker" style="margin-bottom:8px;">Un parcours de terrain</div>
+            <div style="font-size:1.12rem;line-height:1.75;color:#496467;">
+                Une expérience construite progressivement autour de la
+                <strong>prise en charge obstétricale</strong>, de la prévention,
+                de l'échographie et de la santé communautaire.
             </div>
         </div>
-
-        <div class="timeline-item">
-            <div class="timeline-year">2021 — 2024 · KAFOUNTINE</div>
-            <div class="timeline-title">Coordination santé communautaire</div>
-            <div style="color:#496467;line-height:1.7;">
-                Coordination santé communautaire · suivi des indicateurs de santé
+        <div class="experience-note">
+            <div style="font-size:1.8rem;margin-bottom:8px;">♡</div>
+            <div style="font-weight:800;color:#102a2d;margin-bottom:6px;">
+                Une approche humaine
+            </div>
+            <div style="color:#496467;line-height:1.65;font-size:.92rem;">
+                Écoute · sécurité · prévention · accompagnement
             </div>
         </div>
+    </div>
 
-        <div class="timeline-item">
-            <div class="timeline-year">2020 — 2021 · MEKHE</div>
-            <div class="timeline-title">Pratique obstétricale & prévention</div>
-            <div style="color:#496467;line-height:1.7;">
-                Accouchements · vaccination · dépistage
-            </div>
-        </div>
+    <div class="experience-list">
 
-        <div class="timeline-item">
-            <div class="timeline-year">2018 — 2019 · EPS / CLINIQUES</div>
-            <div class="timeline-title">Soins obstétricaux</div>
-            <div style="color:#496467;line-height:1.7;">
-                Salle d'accouchement · soins obstétricaux · surveillance maternité
+        <article class="experience-card">
+            <div class="experience-top">
+                <div>
+                    <div class="experience-period">2025 · DJINAKY</div>
+                    <h3 class="experience-title">Sage-femme échographiste</h3>
+                    <div class="experience-place">SONUB · Urgences obstétricales</div>
+                </div>
+                <div class="experience-number">01</div>
             </div>
-        </div>
+            <div class="experience-content">
+                <p>
+                    Activité centrée sur la pratique obstétricale, l'échographie
+                    et la prise en charge des situations nécessitant une attention
+                    particulière.
+                </p>
+                <span class="experience-badge">✦ Expérience récente</span>
+            </div>
+            <details class="experience-details">
+                <summary>Consulter les domaines associés</summary>
+                <ul>
+                    <li>Échographie obstétricale</li>
+                    <li>SONUB</li>
+                    <li>Urgences obstétricales</li>
+                </ul>
+            </details>
+        </article>
+
+        <article class="experience-card">
+            <div class="experience-top">
+                <div>
+                    <div class="experience-period">2021 — 2024 · KAFOUNTINE</div>
+                    <h3 class="experience-title">Coordination santé communautaire</h3>
+                    <div class="experience-place">Coordination · suivi des indicateurs de santé</div>
+                </div>
+                <div class="experience-number">02</div>
+            </div>
+            <div class="experience-content">
+                <p>
+                    Participation à la coordination des activités de santé
+                    communautaire et au suivi des indicateurs utiles au pilotage
+                    des actions de santé.
+                </p>
+                <span class="experience-badge">◎ Santé communautaire</span>
+            </div>
+            <details class="experience-details">
+                <summary>Consulter les domaines associés</summary>
+                <ul>
+                    <li>Coordination santé communautaire</li>
+                    <li>Suivi des indicateurs de santé</li>
+                    <li>Organisation et suivi des activités</li>
+                </ul>
+            </details>
+        </article>
+
+        <article class="experience-card">
+            <div class="experience-top">
+                <div>
+                    <div class="experience-period">2020 — 2021 · MEKHE</div>
+                    <h3 class="experience-title">Pratique obstétricale & prévention</h3>
+                    <div class="experience-place">Soins · prévention · santé maternelle</div>
+                </div>
+                <div class="experience-number">03</div>
+            </div>
+            <div class="experience-content">
+                <p>
+                    Expérience associant pratique obstétricale, prévention,
+                    vaccination et dépistage au contact direct des patientes
+                    et des communautés.
+                </p>
+                <span class="experience-badge">♡ Prévention & soins</span>
+            </div>
+            <details class="experience-details">
+                <summary>Consulter les domaines associés</summary>
+                <ul>
+                    <li>Accouchements</li>
+                    <li>Vaccination</li>
+                    <li>Dépistage</li>
+                </ul>
+            </details>
+        </article>
+
+        <article class="experience-card">
+            <div class="experience-top">
+                <div>
+                    <div class="experience-period">2018 — 2019 · EPS / CLINIQUES</div>
+                    <h3 class="experience-title">Soins obstétricaux</h3>
+                    <div class="experience-place">Salle d'accouchement · maternité</div>
+                </div>
+                <div class="experience-number">04</div>
+            </div>
+            <div class="experience-content">
+                <p>
+                    Première expérience professionnelle structurante autour des
+                    soins obstétricaux, de la salle d'accouchement et de la
+                    surveillance des patientes en maternité.
+                </p>
+                <span class="experience-badge">✚ Soins obstétricaux</span>
+            </div>
+            <details class="experience-details">
+                <summary>Consulter les domaines associés</summary>
+                <ul>
+                    <li>Salle d'accouchement</li>
+                    <li>Soins obstétricaux</li>
+                    <li>Surveillance en maternité</li>
+                </ul>
+            </details>
+        </article>
 
     </div>
     """, unsafe_allow_html=True)
